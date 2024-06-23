@@ -1,0 +1,22 @@
+﻿@model List<ResultProductDTO>
+<!-- Property DiscountOfDay Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-12">
+                <div class=" text-center text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1 class="mb-3">Fırsat Ürünleri</h1>
+                    <p>
+                        "İndirimli doğallığın keyfini çıkarın."
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="tab-0" class="tab-pane fade show p-0 active">
+                @Html.Partial("_PartialProduct", Model.Where(i =>i.IsPopular==true).ToList())
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Property DiscountOfDay End -->

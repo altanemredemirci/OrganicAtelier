@@ -1,0 +1,39 @@
+﻿ @model List<ResultProductDTO>
+<!-- Product Start -->
+<div class="container-xxl py-5">
+	<div class="container">
+		<div class="row g-0 gx-5 align-items-end">
+			<div class="col-lg-6">
+				<div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+					<h1 class="display-5 mb-3">Ürünlerimiz</h1>
+					<p>Doğallığın tadını çıkarın.</p>
+				</div>
+			</div>
+			<div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+				<ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+					<li class="nav-item me-2">
+						<a class="btn btn-outline-primary border-2 active" data-bs-toggle="pill" href="#tab-1">Sebzeler</a>
+					</li>
+					<li class="nav-item me-2">
+						<a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-2">Meyveler </a>
+					</li>
+					<li class="nav-item me-0">
+						<a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-3">Yeşillikler ve Otlar</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="tab-content">
+			<div id="tab-1" class="tab-pane fade show p-0 active">
+				@Html.Partial("_PartialProduct", Model.Where(i => i.ProductType.Name == "Sebze").Take(5).ToList())
+			</div>
+			<div id="tab-2" class="tab-pane fade show p-0">
+				@Html.Partial("_PartialProduct", Model.Where(i => i.ProductType.Name == "Meyve").Take(5).ToList())
+			</div>
+			<div id="tab-3" class="tab-pane fade show p-0">
+				@Html.Partial("_PartialProduct", Model.Where(i => i.ProductType.Name == "Yeşillikler ve Otlar").Take(5).ToList())
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Product End -->

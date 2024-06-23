@@ -1,0 +1,26 @@
+﻿@model List<ResultFeatureDTO>
+<!-- Feature Start -->
+<div class="container-fluid bg-light bg-icon my-5 py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 href="/Home/About" class="display-5 mb-3">Organic Atelier Nedir?</h1>
+            <p>Organic Atelier, ilkeleriyle örtüşen yerel üretici ve organik tarım yapan çiftlikleri bulur, aracısız tedarik ettiği kaynağı belli ürünleri gıda mühendisleri kontrolünde seçer.</p>
+        </div>
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="~/img/@item.ImageUrl" alt="">
+                        <h4 class="mb-3">@item.Title</h4>
+                        <p class="mb-4">@item.Description</p>
+                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Daha Fazla..</a>
+                    </div>
+                </div>
+            }
+
+           
+        </div>
+    </div>
+</div>
+<!-- Feature End -->

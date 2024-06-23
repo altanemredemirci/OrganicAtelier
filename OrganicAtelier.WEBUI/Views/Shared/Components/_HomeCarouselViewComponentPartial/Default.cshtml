@@ -1,0 +1,48 @@
+﻿@model ResultSliderDTO
+
+<div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active carousel-item-start">
+                <img class="w-100" src="~/img/@Model.ImageUrl1" alt="Image">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-lg-7">
+                                <h1 class="display-2 mb-5  slideInDown">@Model.Title1</h1>
+                                <p class="animated fadeIn mb-4 text-black-50 pb-2">
+                                    @Model.Description1
+                                </p>
+                                <a href="/Home/Product" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">Ürünler</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item carousel-item-next carousel-item-start">
+                <img class="w-100" src="~/img/@Model.ImageUrl2" alt="Image">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-lg-7">
+                                <h1 class="display-2 mb-5  slideInDown">@Model.Title2</h1>
+                                <p class="animated fadeIn mb-4 text-black-50 pb-2">
+                                    @Model.Description2
+                                </p>
+                                <a href="/Home/Product" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">Ürünler</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model List<ResultProductDTO>
+
+<div class="row g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="product-item">
+                <div class="position-relative bg-light overflow-hidden">
+                    <img class="img-fluid w-100" src="~/img/@item.Image" alt="">
+                    <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">Yeni</div>
+                </div>
+                <div class="text-center p-4">
+                    <a class="d-block h5 mb-2" href="/Home/ProductDetail/@item.Id">@item.Title</a>
+                    <span class="text-primary me-1">@item.Price</span>
+                    <span class="text-body text-decoration-line-underline">@item.Weight gr</span>
+                </div>
+                <div class="border-top text-center pt-1 pb-1">
+
+                    <form asp-action="AddToCart" asp-controller="Cart" method="post">
+                        <small class="w-100 text-center py-5">
+                           <input type="hidden" name="productId" value="@item.Id" />
+                           <input type="hidden" name="quantity" value="1" />
+                                <button  class="text-body btn btn-default"><i class="fa fa-shopping-bag text-primary me-2"></i>Sepete Ekle</button>
+                            
+                           
+                        </small>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+    <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+        <a class="btn btn-primary rounded-pill py-3 px-5" href="/Home/Product">Daha Fazla</a>
+    </div>
+</div>

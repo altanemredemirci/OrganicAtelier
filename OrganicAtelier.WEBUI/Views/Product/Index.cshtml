@@ -1,0 +1,77 @@
+﻿@model List<ResultProductDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Organic Atelier</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <a href="/Product/Create" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-plus"></i> Yeni Ürün
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Resim</th>
+                            <th>Başlık</th>
+                            <th>Fiyat</th>
+                            <th>Popüler</th>
+                            <th>Ürün Türü</th>
+                            <th>Durum</th>
+                            <th>Güncelle</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var pr in Model)
+                        {
+                            <tr>
+                                <td>@pr.Id</td>
+                                <td><img class="img-fluid" src="~/img/@pr.Image" alt="Icon"></td>
+                                <td>@pr.Title</td>
+                                <td>@pr.Price</td>
+                                <td>@pr.IsPopular</td>
+                                <td>@pr.ProductType.Name</td>
+                                <td>
+                                    @if (pr.Status == true)
+                                    {
+                                        <a href="/Product/StatusChange?id=@pr.Id" class="btn btn-outline-warning">Pasif Et</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/Product/StatusChange?id=@pr.Id" class="btn btn-outline-success">Aktif Et</a>
+                                    }
+                                </td>
+
+
+                                <td><a href="/Product/Edit?id=@pr.Id" class="btn btn-outline-warning">Güncelle</a></td>
+                                <td><a href="/Product/Delete?id=@pr.Id" onclick="return confirmDelete();" class="btn btn-outline-danger">Sil</a></td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<script type="text/javascript">
+    function confirmDelete() {
+        return confirm("Silmek istediğinize emin misiniz?");
+    }
+</script>

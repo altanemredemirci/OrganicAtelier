@@ -1,0 +1,49 @@
+﻿@model List<ResultClientDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">İletişim Bilgileri</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlık</th>
+                        <th>İsim</th>
+                        <th>Yorum</th>
+                        <th>Resim</th>                       
+                        <th>Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title"</td>
+                            <td>@item.Name"</td>
+                            <td style="text-wrap: wrap;">@item.Comment"</td>
+                            <td><img class="img-fluid" src="~/img/@item.ImageUrl" alt="Icon"></td>
+                            <td><a href="/Client/Edit?id=@item.Id" class="btn btn-outline-warning btn-sm">Güncelle</a></td>
+                        </tr>
+
+                    }                   
+
+
+
+                </tbody>
+            </table>
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+</div>

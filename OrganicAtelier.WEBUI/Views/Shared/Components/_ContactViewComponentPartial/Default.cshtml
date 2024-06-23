@@ -1,0 +1,107 @@
+﻿@model ResultContactDTO
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">Bize Ulaşın</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="/Home/Index">Anasayfa</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Bize Ulaşın</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Contact Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Bize Ulaşın</h1>
+            <p>@Model.Text</p>
+        </div>
+        <div class="row g-5 justify-content-center">
+            <div class="col-lg-5 col-md-12 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-primary text-white d-flex flex-column justify-content-center h-100 p-5">
+                    <h5 class="text-white">Telefon</h5>
+                    <p class="mb-5"><i class="fa fa-phone-alt me-3"></i>@Model.Phone</p>
+                    <h5 class="text-white">Mail</h5>
+                    <p class="mb-5"><i class="fa fa-envelope me-3"></i>@Model.Email</p>
+                    <h5 class="text-white">Adres</h5>
+                    <p class="mb-5"><i class="fa fa-map-marker-alt me-3"></i>@Model.Address</p>
+                    <h5 class="text-white">Bizi Takip Edin</h5>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href="@Model.Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href="@Model.Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href="@Model.Instagram"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-0" href="@Model.LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>           
+            <div class="col-lg-7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                
+                @if (TempData["MailSuccess"] == null)
+                {
+                    <p class="mb-4">Lütfen öneri ve şikayetlerinizi bize iletin.</p>
+                }
+                else
+                {  @if (TempData["MailSuccess"].ToString() == "true")
+                    {
+                        <div class="alert alert-success" role="alert">
+                            Mail Gönderimi Başarılı.
+                        </div>
+
+                    }
+
+                    else
+                    {
+
+                        <div class="alert alert-danger" role="alert">
+                            Mail Gönderimi Başarısız.
+                        </div>
+                    }
+                }
+
+                <form action="/Home/SendEmail">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="name" placeholder="Ad Soyad">
+                                <label for="name">Ad Soyad</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" name="email" placeholder="Email">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="subject" placeholder="Konu">
+                                <label for="subject">Konu</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Mesaj" name="message" style="height: 200px"></textarea>
+                                <label for="message">Mesajınızı buraya yazınız.</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Gönder</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<!-- Google Map Start -->
+<div class="container-xxl px-0 wow fadeIn" data-wow-delay="0.1s" style="margin-bottom: -6px;">
+    <iframe class="w-100" style="height: 450px;"
+            src="@Model.Location"
+            frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</div>
+<!-- Google Map End -->
