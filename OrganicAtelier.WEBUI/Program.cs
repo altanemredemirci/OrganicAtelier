@@ -4,6 +4,7 @@ using OrganicAtelier.BLL.Abstract;
 using OrganicAtelier.BLL.Concrete;
 using OrganicAtelier.DAL.Abstract;
 using OrganicAtelier.DAL.Concrete.EfCore;
+using OrganicAtelier.WEBUI.Identity;
 using OrganicAtelier.WEBUI.Mapping;
 
 namespace OrganicAtelier.WEBUI
@@ -17,6 +18,54 @@ namespace OrganicAtelier.WEBUI
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddAutoMapper(typeof(MapProfile));
+
+            builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
+
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
+            //Configure Identity
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                //password
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.AllowedForNewUsers = true;
+
+
+                //user
+                options.User.RequireUniqueEmail = true;
+                //options.User.AllowedUserNameCharacters = "";
+
+                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+
+            });
+
+
+            //Configure Cookie
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.SlidingExpiration = true;
+                options.Cookie = new CookieBuilder
+                {
+                    HttpOnly = true,
+                    Name = "Organic.Security.Cookie",
+                    SameSite = SameSiteMode.Strict //Oturumu serverdan kullanýcý browserýna taþýdýk
+                };
+            });
+
 
 
             builder.Services.AddScoped<IProductService, ProductManager>();
@@ -64,10 +113,10 @@ namespace OrganicAtelier.WEBUI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseAuthentication();
+            app.UseAuthentication(); //Kimliklendirme
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthorization(); // Yetkilendirme
 
             app.MapControllerRoute(
                 name: "default",

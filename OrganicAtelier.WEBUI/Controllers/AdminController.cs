@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OrganicAtelier.WEBUI.Controllers
 {
-    [Authorize(Roles ="admin")]
+    [Authorize]
     public class AdminController : Controller
     {
         public IActionResult Index()

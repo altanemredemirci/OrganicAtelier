@@ -1,0 +1,52 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+@await Component.InvokeAsync("_AccountLoginHeaderViewComponentPartial")
+<div class="container-xxl">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+
+            <div class="col-6 offset-3">
+
+
+                <div class="col-6 offset-4">
+                    <img src="~/img/OrganicAtelierLogo(250x250).jpeg" class="brand-image img-circle elevation-3" style="max-width: 250px; max-height: 250px;">
+                </div>
+            @*     @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-warning">
+                        @TempData["success"]
+                    </div>
+                } *@
+                <form asp-action="Login" asp-controller="Account" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @* <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" /> *@
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success">Giriş Yap</button>
+                    </div>
+                    <div class="mb-3">
+                        <a href="/Account/Register">Kayıt Ol</a>
+                    </div>
+                    <div class="mb-3">
+                        <a href="/Account/ForgotPassword">Şifremi Unuttum</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
