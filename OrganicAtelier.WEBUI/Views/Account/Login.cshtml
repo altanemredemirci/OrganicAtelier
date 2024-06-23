@@ -22,7 +22,7 @@
                 } *@
                 <form asp-action="Login" asp-controller="Account" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    @* <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" /> *@
+                    <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
                     <div class="mb-3">
                         <label asp-for="Email" class="form-label"></label>
                         <input asp-for="Email" class="form-control" />
